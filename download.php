@@ -1,15 +1,21 @@
 <?php
 // Check download token
-if (empty($_GET['mime']) OR empty($_GET['token']))
+if (empty($_GET['token']))
 {
 	exit('Invalid download token');
 }
 
 // Set operation params
-$mime = filter_var($_GET['mime']);
-$ext  = str_replace(array('/', 'x-'), '', strstr($mime, '/'));
+//$mime = filter_var($_GET['mime']);
+
 $url  = base64_decode(filter_var($_GET['token']));
-$name = urldecode($_GET['title']). '.' .$ext; 
+
+$parsed_url = parse_url($url);
+$mime = $parsed_url['mime'];
+$ext  = str_replace(array('/', 'x-'), '', strstr($mime, '/'));
+$title = $parse_url['title'];
+
+$name = urldecode($title). '.' .$ext; 
 
 // Fetch and serve
 if ($url)
