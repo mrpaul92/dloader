@@ -29,7 +29,9 @@ function download_file( $fullPath ){
         ini_set('zlib.output_compression', 'Off');
 
     // File Exists?
-    if( url_exists($fullPath) ){
+    //if( url_exists($fullPath) ){
+    
+    if( $fullPath ){
 
 
         // Parse Info / Get Extension
